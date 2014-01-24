@@ -3,16 +3,23 @@ module Analyze
 
     # CLASS METHODS
 
-    def self.perform(fp)
+    def self.perform(path: nil, before: nil, after: nil)
       analytics = {}
 
-      if File.exist?(fp)
-        IO.foreach(fp) do |line|
-          chunk = line.match(/(GET|POST)(.\/.+\.(json|xml))/)
-          if chunk
-            matches = match(chunk[2])
+      AccessLog.new(path).tap do |log|
+        log.lines do |line|
+          if before
+            next unless line.before?(before)
+          end
+
+          if after
+            next unless line.after?(after)
+          end
+
+          if line.path
+            matches = match(line.path)
             if matches
-              matches.each do |match|
+              matches.each do |match| 
                 analytics[match] ||= 0
                 analytics[match] += 1
               end
