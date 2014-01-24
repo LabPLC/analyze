@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'trollop'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'analyze'))
+
+opts = Trollop.options do
+  opt :path, "Path to Nginx access logs", type: :string, required: true
+end
+
+matches = Analyze::API.perform(opts[:path])
+
+matches.keys.sort.each do |key|
+  str = ""
+  str += key.to_s
+  str += ": "
+  str += matches[key].to_s
+  puts str
+end
