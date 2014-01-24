@@ -14,7 +14,7 @@ bundle
 ## Usage
 
 ```
-./bin/api --options 
+./bin/analyze_service --options
 
 #=>
 /aire: 43367
@@ -37,11 +37,12 @@ bundle
 
 ##Options
 
-  * --path, -p <s>:    Path to Nginx access logs (required: true)
-  * --sort, -s <s>:    Sorting method (valid_sorting_methods: [service, hits] ) (default_sorting_method: service)
-  * --before, -b <s>:  Ignores all log items after a specified time (format: '24/Jan/2014:11:19:39 -0600')
+  * --path, -p <s>:   Path to Nginx access logs
+  * --service, -s <s>:   Service to analyze (valid_services: [API]) (default_service: API)
+  * --sort, -o <s>:   Sorting method (valid_method: [service, hits]) (default_method: service)
+  * --before, -b <s>:   Ignores all log items after a specified time (format: '24/Jan/2014:11:19:39 -0600')
   * --after, -a <s>:   Ignores all log items before a specified time (format: '24/Jan/2014:11:19:39 -0600')
-  * --help, -h:        Show this message
+  * --help, -h:   Show this message
 
 ## Contributing
 

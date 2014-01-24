@@ -7,6 +7,9 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'analyze
 
 # CONSTANTS
 
+API_SERVICE  = 'API'.freeze
+DEFAULT_SERVICE = API_SERVICE
+
 SERVICE_SORT = 'service'.freeze
 HITS_SORT    = 'hits'.freeze
 DEFAULT_SORT = SERVICE_SORT
@@ -17,6 +20,7 @@ TIME_FORMAT = '%d/%b/%Y:%H:%M:%S %z'.freeze
 
 opts = Trollop.options do
   opt :path, "Path to Nginx access logs", type: :string, required: true
+  opt :service, "Service to analyze", type: :string, default: API_SERVICE
   opt :sort, "Sorting method (`service` or `hits`)", type: :string, default: DEFAULT_SORT
   opt :before, "Ignores all log items after a specified time (format: '24/Jan/2014:11:19:39 -0600')", type: :string
   opt :after, "Ignores all log items before a specified time (format: '24/Jan/2014:11:19:39 -0600')", type: :string
@@ -25,6 +29,10 @@ end
 # PATH
 
 path = opts[:path]
+
+# SERVICE
+
+service = Analyze.const_get(opts[:service])
 
 # SORTING
 
@@ -46,7 +54,9 @@ if opts[:after]
   after = DateTime.strptime(opts[:after], TIME_FORMAT)
 end
 
-matches = Analyze::API.perform(path: path, before: before, after: after)
+# PERFORM ANALYSIS
+
+matches = service.perform(path: path, before: before, after: after)
 
 matches.map(&:flatten).sort(&sort).each do |service,hits|
   str = ""
