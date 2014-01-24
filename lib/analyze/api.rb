@@ -4,8 +4,10 @@ module Analyze
     # CONSTANTS
 
     PATTERNS = [
+      /(\/aire)\.(json|xml)/,
       /(\/aire).+\.(json|xml)/,
       /(\/aire\/[A-z]+)\.(json|xml)/,
+      /(\/georeferencia)\.(json|xml)/,
       /(\/georeferencia).+\.(json|xml)/,
       /(\/georeferencia\/[A-z]+).(json|xml)/,
       /(\/movilidad)\/.+\.(json|xml)/,
