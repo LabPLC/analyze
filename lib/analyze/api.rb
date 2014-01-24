@@ -3,7 +3,7 @@ module Analyze
 
     # CONSTANTS
 
-    PATTERNS = [
+    VALID_PATTERNS = [
       /(\/aire)\.(json|xml)/,
       /(\/aire).+\.(json|xml)/,
       /(\/aire\/[A-z]+)\.(json|xml)/,

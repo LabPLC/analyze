@@ -4,7 +4,7 @@ module Analyze
     # CLASS METHODS
 
     def self.perform(path: nil, before: nil, after: nil)
-      analytics = {}
+      results = {}
 
       AccessLog.new(path).tap do |log|
         log.lines do |line|
@@ -20,15 +20,15 @@ module Analyze
             matches = match(line.path)
             if matches
               matches.each do |match| 
-                analytics[match] ||= 0
-                analytics[match] += 1
+                results[match] ||= 0
+                results[match] += 1
               end
             end
           end
         end
       end
 
-      analytics
+      results
     end
 
     private
@@ -47,7 +47,7 @@ module Analyze
     end
 
     def self.patterns
-      self::PATTERNS
+      self::VALID_PATTERNS
     end
 
   end
