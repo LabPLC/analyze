@@ -28,28 +28,5 @@ module Analyze
       /(\/servicios\/buzon\/jurisdictions).+\.(json|xml)/,
     ].freeze
 
-    # CLASS METHODS
-
-    def self.perform(fp)
-      analytics = {}
-
-      if File.exist?(fp)
-        IO.foreach(fp) do |line|
-          chunk = line.match(/(GET|POST)(.\/.+\.(json|xml))/)
-          if chunk
-            matches = match(chunk[2])
-            if matches
-              matches.each do |match|
-                analytics[match] ||= 0
-                analytics[match] += 1
-              end
-            end
-          end
-        end
-      end
-
-      analytics
-    end
-
   end
 end
