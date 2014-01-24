@@ -34,6 +34,11 @@ bundle
 /servicios/buzon: 3
 ```
 
+## Options
+  * --path, -p <s>:   Path to Nginx access logs
+  * --sort, -s <s>:   Sorting method (`service` or `hits`) (default: service)
+  * --help, -h:   Show this message
+
 ## Contributing
 
 * Fork the project.
