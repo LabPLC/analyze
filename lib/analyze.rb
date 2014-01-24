@@ -1,6 +1,7 @@
 require 'time'
 
 module Analyze
+  VALID_SERVICES = %w( API ).freeze
 end
 
 require File.join( File.dirname(__FILE__), 'analyze', 'access_log' )

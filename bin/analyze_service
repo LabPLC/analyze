@@ -32,7 +32,12 @@ path = opts[:path]
 
 # SERVICE
 
-service = Analyze.const_get(opts[:service])
+if Analyze::VALID_SERVICES.include?(opts[:service])
+  service = Analyze.const_get(opts[:service])
+else
+  raise ArgumentError, "invalid service specified."
+end
+
 
 # SORTING
 
