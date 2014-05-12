@@ -19,6 +19,7 @@ module Analyze
       /(\/movilidad\/transporte\/lineas)\.(json|xml)/,
       /(\/movilidad\/transporte\/estaciones)\.(json|xml)/,
       /(\/movilidad\/transporte\/trayectos)\.(json|xml)/,
+      /(\/movilidad\/vehiculos).+\.(json|xml)/,
       /(\/servicios)\/.+\.(json|xml)/,
       /(\/servicios\/buzon).+\.(json|xml)/,
       /(\/servicios\/buzon\/services).+\.(json|xml)/,
